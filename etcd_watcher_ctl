@@ -1,0 +1,54 @@
+#! /bin/bash
+
+PYTHON_PATH=/opt/etcd_watcher_venv/bin/python
+ETCD_CLIENT_PATH=/usr/lib/python2.7/site-packages/etcd_watcher/etcd_client.py
+
+
+usage()
+{
+    cat 1>&2 <<EOF
+etcd_watcher_ctl get <key>
+etcd_watcher_ctl get_dir_items <dir_name>
+etcd_watcher_ctl get_watcher_master
+etcd_watcher_ctl get_etcd_master
+etcd_watcher_ctl get_member_list
+etcd_watcher_ctl update <key> <value>
+etcd_watcher_ctl delete <key>
+EOF
+    exit 1
+}
+
+
+op=$1
+case "$op" in
+    get)
+	key=$2
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op $key
+	;;
+    get_dir_items)
+	dir_name=$2
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op $dir_name
+	;;
+    get_etcd_master)
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op
+	;;
+    get_member_list)
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op
+	;;
+    update)
+	key=$2
+	value=$3
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op $key $value
+	;;
+    delete)
+	key=$2
+	$PYTHON_PATH $ETCD_CLIENT_PATH $op $key
+	;;
+    -h)
+	usage
+	;;
+    *)
+	echo "Invalid operation!"
+	usage
+	;;
+esac

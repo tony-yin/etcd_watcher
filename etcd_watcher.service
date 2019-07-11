@@ -1,0 +1,14 @@
+[Unit]
+Description=Etcd Watcher daemon
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/opt/etcd_watcher_venv/bin/python /usr/lib/python2.7/site-packages/etcd_watcher/etcd_watcher.py
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
