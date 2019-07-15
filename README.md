@@ -19,5 +19,5 @@ rpm -ivh ./rpmbuild/RPMS/noarch/etcd_watcher-0.1.0-1.noarch.rpm
 [document for this project][2]
 
 
-[1]: http://cdn.tony-yin.site/etcd_init_election.gif
+[1]: https://github.com/tony-yin/etcd_watcher/blob/master/etcd_init_election.gif
 [2]: https://www.tony-yin.site/2019/05/15/Etcd_Service_HA/
